@@ -1,8 +1,7 @@
-{{!< default}}
-
+{{#*inline "body"}}
 <main class="site-main">
 
-    {{#author}}
+    {{#with author}}
     <section class="taxonomy gh-canvas">
 
         {{#if profile_image}}
@@ -30,13 +29,13 @@
             <div class="share author-social">
                 {{#if facebook}}
                     <a class="share-link share-link-facebook author-social-item" href="https://www.facebook.com/{{facebook}}" target="_blank" rel="noopener noreferrer">
-                        {{> "icons/facebook"}}
+                        {{> partials/icons/facebook}}
                         Facebook
                     </a>
                 {{/if}}
                 {{#if twitter}}
                     <a class="share-link share-link-twitter author-social-item" href="https://twitter.com/{{twitter}}" target="_blank" rel="noopener noreferrer">
-                        {{> "icons/twitter"}}
+                        {{> partials/icons/twitter}}
                         Twitter
                     </a>
                 {{/if}}
@@ -45,14 +44,16 @@
         </header>
 
     </section>
-    {{/author}}
+    {{/with}}
 
     <div class="post-feed gh-feed gh-canvas">
         {{#foreach posts}}
-            {{> "loop"}}
+            {{> partials/loop}}
         {{/foreach}}
     </div>
 
     {{pagination}}
 
 </main>
+{{/inline}}
+{{> default}}

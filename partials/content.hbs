@@ -1,22 +1,22 @@
 <article class="single {{post_class}}">
 
-    {{#match @page.show_title_and_feature_image}}
+    {{#match show_title_and_feature_image}}
         <header class="single-header gh-canvas">
             {{#is "post"}}
             <div class="single-meta">
                 <span class="single-meta-item single-meta-date">
-                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                    <time datetime="{{date published_at format="YYYY-MM-DD"}}">
                         {{date published_at format="DD MMM YYYY"}}
                     </time>
                 </span>
                 <span class="single-meta-item single-meta-length">
                     {{reading_time}}
                 </span>
-                {{#primary_tag}}
+                {{#with primary_tag}}
                     <span class="single-meta-item single-meta-tag">
-                        <a class="post-tag post-tag-{{slug}}" href="{{url}}">{{name}}</a>
+                        <a class="post-tag post-tag-{{slug}}" href="/{{slug}}">{{name}}</a>
                     </span>
-                {{/primary_tag}}
+                {{/with}}
             </div>
             {{/is}}
 
@@ -28,12 +28,12 @@
                 </div>
             {{/if}}
 
-            <div class="author-name" style="display: none;">{{authors}}</div>
+            <div class="author-name" style="display: none;">{{#foreach authors}}{{#if @first}}{{name}}{{else}}, {{name}}{{/if}}{{/foreach}}</div>
 
             {{#if feature_image}}
             {{#unless no_image}}
                 <figure class="single-media kg-width-{{width}}">
-                    <img srcset="{{> "srcset"}}" sizes="(min-width: 1023px) 920px, calc(90vw)" src="{{img_url feature_image size="l"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+                    <img srcset="{{> partials/srcset}}" sizes="(min-width: 1023px) 920px, calc(90vw)" src="{{img_url feature_image size="l"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
                     {{#if feature_image_caption}}
                         <figcaption>{{feature_image_caption}}</figcaption>
                     {{/if}}
@@ -44,7 +44,7 @@
     {{/match}}
 
     <div class="single-content gh-content gh-canvas">
-        {{content}}
+        {{{content}}}
     </div>
 
     {{#is "post"}}
@@ -52,27 +52,27 @@
     <footer class="single-footer">
 
         <div class="single-footer-left">
-            {{#prev_post}}
+            {{#with prev_post}}
             <div class="navigation navigation-previous">
-                <a class="navigation-link" href="{{url}}" aria-label="Previous post">
-                    <span class="navigation-icon">{{> "icons/arrow-left"}}</span>
+                <a class="navigation-link" href="/{{slug}}" aria-label="Previous post">
+                    <span class="navigation-icon">{{> partials/icons/arrow-left}}</span>
                 </a>
             </div>
-            {{/prev_post}}
+            {{/with}}
         </div>
 
         <div class="single-footer-middle">
-            {{#if @custom.show_author}}
+            {{#if @root.custom.show_author}}
             <div class="single-footer-top">
                 <h3 class="single-footer-title">Published by:</h3>
                 <div class="author-list">
                     {{#foreach authors}}
                         <div class="author-image-placeholder u-placeholder square">
-                            <a href="{{url}}" title="{{name}}">
+                            <a href="/{{slug}}" title="{{name}}">
                                 {{#if profile_image}}
                                     <img class="author-image u-object-fit" src="{{img_url profile_image size="xs"}}" alt="{{name}}" loading="lazy">
                                 {{else}}
-                                    <span class="u-object-fit">{{> "icons/avatar"}}</span>
+                                    <span class="u-object-fit">{{> partials/icons/avatar}}</span>
                                 {{/if}}
                             </a>
                         </div>
@@ -83,13 +83,13 @@
         </div>
 
         <div class="single-footer-right">
-            {{#next_post}}
+            {{#with next_post}}
             <div class="navigation navigation-next">
-                <a class="navigation-link" href="{{url}}" aria-label="Next post">
-                    <span class="navigation-icon">{{> "icons/arrow-right"}}</span>
+                <a class="navigation-link" href="/{{slug}}" aria-label="Next post">
+                    <span class="navigation-icon">{{> partials/icons/arrow-right}}</span>
                 </a>
             </div>
-            {{/next_post}}
+            {{/with}}
         </div>
 
     </footer>

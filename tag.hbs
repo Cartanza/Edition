@@ -1,8 +1,7 @@
-{{!< default}}
-
+{{#*inline "body"}}
 <main class="site-main">
 
-    {{#tag}}
+    {{#with tag}}
     <section class="taxonomy">
 
         {{#if feature_image}}
@@ -19,14 +18,16 @@
         </header>
 
     </section>
-    {{/tag}}
+    {{/with}}
 
     <div class="post-feed gh-feed gh-canvas">
         {{#foreach posts}}
-            {{> "loop"}}
+            {{> partials/loop}}
         {{/foreach}}
     </div>
 
     {{pagination}}
 
 </main>
+{{/inline}}
+{{> default}}

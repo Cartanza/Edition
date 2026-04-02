@@ -1,19 +1,20 @@
-{{!< default}}
-
+{{#*inline "body"}}
 <main class="site-main">
 
-    {{#post}}
-        {{> "content" width="full"}}
-    {{/post}}
+    {{#with post}}
+        {{> partials/content width="full"}}
+    {{/with}}
 
     {{#is "post"}}
-        {{#if @custom.show_related_posts}}
-            {{> "related-posts"}}
+        {{#if @root.custom.show_related_posts}}
+            {{> partials/related-posts}}
         {{/if}}
 
-        {{#post}}
-            {{> "comments"}}
-        {{/post}}
+        {{#with post}}
+            {{> partials/comments}}
+        {{/with}}
     {{/is}}
 
 </main>
+{{/inline}}
+{{> default}}

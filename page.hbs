@@ -1,9 +1,10 @@
-{{!< default}}
-
+{{#*inline "body"}}
 <main class="site-main">
 
-    {{#post}}
-        {{> "content" width="wide"}}
-    {{/post}}
+    {{#with post}}
+        {{> partials/content width="wide"}}
+    {{/with}}
 
 </main>
+{{/inline}}
+{{> default}}

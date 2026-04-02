@@ -73,7 +73,7 @@
                     "Fullscreen",
                     "Half screen"
                 ],
-                "default": "Fullscreen",
+                "default": "Half screen",
                 "group": "homepage"
             },
             "show_featured_posts": {
